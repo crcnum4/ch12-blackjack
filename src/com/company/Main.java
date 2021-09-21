@@ -13,8 +13,6 @@ public class Main {
         System.out.println(deck.draw().display());
         System.out.println(deck.draw().display());
         System.out.println(deck.draw().display());
-        System.out.println(deck.draw().display());
-        System.out.println(deck.draw().display());
-        System.out.println(deck.draw().display());
+
     }
 }
