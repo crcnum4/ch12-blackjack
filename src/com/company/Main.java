@@ -1,8 +1,9 @@
 package com.company;
 
-import com.company.cardGame.Deck;
-import com.company.cardGame.RiggedDeck;
-import com.company.cardGame.StandardDeck;
+import com.company.cardGame.blackJack.Hand;
+import com.company.cardGame.deck.Deck;
+import com.company.cardGame.deck.RiggedDeck;
+import com.company.cardGame.deck.StandardDeck;
 
 public class Main {
 
@@ -10,9 +11,25 @@ public class Main {
 	// write your code here
         Deck deck = new RiggedDeck();
         deck.shuffle();
-        System.out.println(deck.draw().display());
-        System.out.println(deck.draw().display());
-        System.out.println(deck.draw().display());
+        Hand myHand = new Hand();
+        myHand.addCard(deck.draw());
+        System.out.println(myHand.displayHand());
+        System.out.println(myHand.displayValue());
+        myHand.addCard(deck.draw());
+        System.out.println(myHand.displayHand());
+        System.out.println(myHand.displayValue());
+        myHand.addCard(deck.draw());
+        System.out.println(myHand.displayHand());
+        System.out.println(myHand.displayValue());
+        myHand.addCard(deck.draw());
+        System.out.println(myHand.displayHand());
+        System.out.println(myHand.displayValue());
+        myHand.addCard(deck.draw());
+        System.out.println(myHand.displayHand());
+        System.out.println(myHand.displayValue());
+        myHand.addCard(deck.draw());
+        System.out.println(myHand.displayHand());
+        System.out.println(myHand.displayValue());
 
     }
 }
