@@ -19,7 +19,7 @@ public class Console {
         return option;
     }
 
-    protected String getString(String prompt, boolean isRequired) {
+    public static String getString(String prompt, boolean isRequired) {
         String input;
         do {
             System.out.println(prompt);
