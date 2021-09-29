@@ -10,6 +10,9 @@ public class Hand {
     private int bet = 0;
     private Actor holder;
 
+    public static final byte PUSHPAY = 0;
+    public static final byte NORMALPAY = 1;
+
     public Hand(Actor holder) {
         this.holder = holder;
     }
@@ -63,12 +66,32 @@ public class Hand {
 
     public int getBet() { return bet; }
 
+    public void placeBet() {
+        bet = holder.placeBet();
+    }
+
+    public int getBalance() { return holder.getBalance();}
+
+    public String getName() { return holder.getName(); }
+
     // hasPair -> returns true if at least 1 pair is in the hand.
     // isPair -> takes 2 cards and determines if pair
     // countPair -> count all instances of pairs in a hand.
     // checkPair -> check first two cards for pair
     public boolean canSplit() {
         return cards.get(0).getRank() == cards.get(1).getRank();
+    }
+
+    public void doubleBet() {
+        holder.addBalance(-bet);
+        bet *= 2;
+    }
+
+    public void payout(byte type) {
+        switch (type) {
+            case PUSHPAY -> holder.addBalance(bet);
+            case NORMALPAY -> holder.addBalance(bet * 2);
+        }
     }
 
 }
