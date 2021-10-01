@@ -12,6 +12,7 @@ public class Hand {
 
     public static final byte PUSHPAY = 0;
     public static final byte NORMALPAY = 1;
+    public static final byte BLACKJACKPAY = 2;
 
     public Hand(Actor holder) {
         this.holder = holder;
@@ -58,8 +59,8 @@ public class Hand {
     // getting composition methods
     // getter with no setter
     // pass through method
-    public byte getAction() {
-        return holder.getAction(this);
+    public byte getAction(Hand dealer) {
+        return holder.getAction(this, dealer);
     }
 
     public int size() { return cards.size(); }
@@ -91,7 +92,24 @@ public class Hand {
         switch (type) {
             case PUSHPAY -> holder.addBalance(bet);
             case NORMALPAY -> holder.addBalance(bet * 2);
+            // TODO: add logic to game to trigger this payout when applicable
+            case BLACKJACKPAY -> holder.addBalance(bet * 2.5);
         }
+    }
+
+    // removeCard method
+    public Card removeCard(int index) {
+        // take card at index out of hand and return to table.
+        return cards.remove(index);
+    }
+
+    public Hand splitHand() {
+        // double bet
+        bet = bet / 2;
+        Hand hand = new Hand(holder);
+        hand.addCard(cards.remove(1));
+        hand.bet = bet;
+        return hand;
     }
 
 }
