@@ -59,7 +59,7 @@ public class Hand {
     // getting composition methods
     // getter with no setter
     // pass through method
-    public byte getAction(Hand dealer) {
+    public byte getAction(int dealer) {
         return holder.getAction(this, dealer);
     }
 
@@ -110,6 +110,22 @@ public class Hand {
         hand.addCard(cards.remove(1));
         hand.bet = bet;
         return hand;
+    }
+
+    public void revealHand() {
+        for (Card card : cards) {
+            if (card.getIsFaceDown()) {
+                card.flip();
+            }
+        }
+    }
+
+    public void discardHand() {
+        cards.clear();
+    }
+
+    public int getShownRank() {
+        return cards.get(1).getRank();
     }
 
 }
